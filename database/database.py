@@ -20,6 +20,8 @@ class Database:
 
             return self.cursor.fetchone() is not None
 
-    def is_subscribed(self, user_id):
+    def get_all_ids(self):
         with self.connection:
-            self.cursor.execute()
+            users_ids = self.cursor.execute('SELECT user_id FROM users')
+
+            return [int(user_id[0]) for user_id in users_ids]
